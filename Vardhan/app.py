@@ -52,9 +52,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Load Data ────────────────────────────────────────────────
+import os
+
 @st.cache_data
 def load_data():
-    df = pd.read_csv('OLA_Cleaned.csv')
+    csv_path = os.path.join(os.path.dirname(__file__), "OLA_Cleaned.csv")
+    df = pd.read_csv(csv_path)
     df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
     return df
 
